@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown to Happy New Year</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #countdown {
+            font-size: 24px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="countdown"></div>
+
+    <script>
+        const targetDate = new Date("December 31, 2023 23:59:59").getTime();
+
+         const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const timeRemaining = targetDate - now;
+
+            if (timeRemaining > 0) {
+                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                document.getElementById("countdown").innerHTML = `Time remaining: ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+            } else {
+                document.getElementById("countdown").innerHTML = "Happy New Year!";
+                clearInterval(countdownInterval);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
